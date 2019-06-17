@@ -5,7 +5,7 @@
 
 The This repo consist of a demo file and related coduments to explain protein sequence, alignment algoriths to work with them and their relevance in bioinformatics.
 
-- [Demo Jupyter Notebook][https://github.com/malvikasharan/Alignment-Algorithms/blob/master/homage_to_alignment%20algorithms.ipynb]
+- [Demo Jupyter Notebook](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/homage_to_alignment%20algorithms.ipynb)
 - [Python script for Needleman-Wunsch Algorithm](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/alignment_simple.py)
 - [BLOSUM substitution Matrix for protein residues](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/blosum62.bla)
 
