@@ -20,7 +20,7 @@ The This repo consist of a demo file and related coduments to explain protein se
 
 **License**
 
-The document is freely available under [BSD 2-Clause License](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/LICENSE).
+The document is freely available under [MIT License](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/LICENSE).
 
 
 
