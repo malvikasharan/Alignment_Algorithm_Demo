@@ -1,5 +1,5 @@
+Bio
 numpy==1.16.*
 matplotlib==3.*
 seaborn==0.8.1
 pandas
-Bio
