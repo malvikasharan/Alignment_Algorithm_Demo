@@ -1,6 +1,6 @@
 # Sequence Alignment Algorithms
 
-- Short link to access this repository: [https://tinyurl.com/malvika-algorithm](https://tinyurl.com/malvika-algorithm)
+- Short link to access this repository: **[https://tinyurl.com/malvika-algorithm](https://tinyurl.com/malvika-algorithm)**
 
 **Introduction & Background**
 
