@@ -17,7 +17,7 @@
 
 **About this repository**
 
-The This repo consist of a demo file and related coduments to explain protein sequence, alignment algoriths to work with them and their relevance in bioinformatics.
+The This repo consist of a demo file and related documents to explain protein sequence, alignment algoriths to work with them and their relevance in bioinformatics.
 
 **Demo file**
 
