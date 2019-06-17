@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+# Description = Computes Needleman-Wunsch Pairwise Alignment Algorithm
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 def create_substution_matrix(residue_list, match_score=1,
-							 mismatch_score=-1):
+                             mismatch_score=-1):
     '''
     This function creates a substituion matrix for residues:
 
@@ -128,19 +131,93 @@ def trace_best_alignment(scored_dp_matrix, match_score=1,
     row_seq = ''.join(map(str, row_residue_list[::-1]))
     return col_seq, row_seq
 
-dna_list = ('A', 'C', 'T', 'G', 'U')
-dna1 = 'GATTACA'
-dna2 = 'GCATGCU'
-# scoring_matrix = create_substution_matrix(dna_list)
-# scored_dp_matrix = create_dynamic_prog_matrix(dna1, dna2,
-#                                               scoring_matrix)
 
-amino_acid_list = ('A', 'C', 'D', 'E', 'F',
-                   'G', 'H', 'I', 'K', 'L',
-                   'M', 'N', 'P', 'Q', 'R',
-                   'S', 'T', 'V', 'W', 'Y')
-# human_p53 = 'MEEPQSDPSV'
-# mouse_p53 = 'MTAMEESQSD'
+## Edited the previous function trace_best_alignment 
+## by removing match and mismatch score
+
+def trace_best_alignment_with_blosum(scored_dp_matrix, gap_penalty=-4):
+    '''
+    This function traces back the best alignment.
+    Diagonal arrow is a match or mismatch. Horizontal arrows introduce
+    gap ("-") in the row and vertical arrows introduce gaps in the column.
+
+    Arguments:
+    - scored_dp_matrix:   scored matrix for two sequences.
+    - gap_penalty:        An integer number indicating gap penalty/score. 
+                          (default gap penalty in NCBI BLOSUM62 = -4)
+    '''
+    i = len(scored_dp_matrix.index.values)-1
+    j = len(scored_dp_matrix.columns.values)-1
+    row_residue_list = []
+    col_residue_list = []
+    match_positions = []
+    print("\nTrackback type:")
+    while i > 0 and j > 0:
+        current_score = scored_dp_matrix.iloc[i, j]
+        left_score = scored_dp_matrix.iloc[i, j-1]
+        up_score = scored_dp_matrix.iloc[i-1, j]
+        diag_score = scored_dp_matrix.iloc[i-1, j-1]
+        row_val = scored_dp_matrix.index.values[i]
+        col_val = scored_dp_matrix.columns.values[j]
+        trackback_type = ""  
+        if i > 1 and j > 1 and current_score == diag_score:
+            trackback_type = "diagonal_match"
+            row_val = scored_dp_matrix.index.values[i]
+            col_val = scored_dp_matrix.columns.values[j]
+            i -= 1
+            j -= 1
+            match_positions.append(row_val)
+        elif i > 0 and (current_score == up_score + gap_penalty):
+            trackback_type = "up"
+            row_val = scored_dp_matrix.index.values[i]
+            col_val = '-'
+            i -= 1
+        elif j > 0 and (current_score == left_score + gap_penalty):
+            trackback_type = "left"
+            col_val = scored_dp_matrix.columns.values[j]
+            row_val = '-'
+            j -= 1
+        else:
+            trackback_type = "diagonal_match"
+            row_val = scored_dp_matrix.index.values[i]
+            col_val = scored_dp_matrix.columns.values[j]
+            i -= 1
+            j -= 1
+            match_positions.append(row_val)
+        print(trackback_type)
+        row_residue_list.append(row_val)
+        col_residue_list.append(col_val)
+    print("\nTotal aligned positions: {}".format(len(match_positions)))
+    col_seq = ''.join(map(str, col_residue_list[::-1]))
+    row_seq = ''.join(map(str, row_residue_list[::-1]))
+    return col_seq, row_seq
+
+# Format BLOSUM subsitution file to pandas matrix
+
+def read_blosum_file_to_matrix(blosum_file):
+    '''
+    Creates a matrix from NCBI BLOSUM file.
+
+    Arguments:
+    - blosum_file:     provide local file BLOSUM substitution matrix.
+                       (Download the current version: 
+                        https://www.ncbi.nlm.nih.gov/Class/BLAST/BLOSUM62.txt)
+    '''
+                
+    header_list= ['A', 'R', 'N', 'D', 'C', 'Q',
+                      'E', 'G', 'H', 'I', 'L', 'K', 
+                      'M', 'F', 'P', 'S', 'T', 'W', 
+                      'Y', 'V', 'B', 'Z', 'X', '*'] # * is gap
+    blosum = pd.read_csv(blosum_file, skiprows=6, delim_whitespace=True)
+    blosum = blosum.replace('NaN', 0)
+    blosum.columns = header_list
+    blosum.index = header_list
+    return blosum
+
+###################################
+
+# Test pairwise alignment for Protein Sequences
+
 human_p53 = 'TFSDLWKLLPENNV'
 mouse_p53 = 'SQETFSGLWKLLPP'
 scoring_matrix = create_substution_matrix(amino_acid_list)
@@ -149,3 +226,27 @@ scored_dp_matrix = create_dynamic_prog_matrix(human_p53, mouse_p53,
 aligned_seq1, aligned_seq2 = trace_best_alignment(scored_dp_matrix)
 print('Optimal gloabl alignment of the given sequences is:\n{}\n{}'.format(
     aligned_seq1, aligned_seq2))
+
+# Test pairwise alignment with BLOSUM 62 Metrices
+blosum = read_blosum_file_to_matrix('blosum62.txt')
+scored_dp_matrix_blosum = create_dynamic_prog_matrix(
+                            human_p53, mouse_p53, 
+                            blosum, gap_penalty=-4)
+print(scored_dp_matrix_blosum)
+aligned_seq1, aligned_seq2 = trace_best_alignment_with_blosum(scored_dp_matrix)
+print('Optimal gloabl alignment of the given sequences is:\n{}\n{}'.format(
+    aligned_seq1, aligned_seq2))
+create_heatmap_from_matrix(scored_dp_matrix_blosum)
+
+# Test pairwise alignment for DNA Sequences
+
+dna_list = ('A', 'C', 'T', 'G', 'U')
+dna1 = 'GATTACA'
+dna2 = 'GCATGCU'
+# scoring_matrix = create_substution_matrix(dna_list)
+# scored_dp_matrix = create_dynamic_prog_matrix(dna1, dna2,
+
+amino_acid_list = ('A', 'C', 'D', 'E', 'F',
+                   'G', 'H', 'I', 'K', 'L',
+                   'M', 'N', 'P', 'Q', 'R',
+                   'S', 'T', 'V', 'W', 'Y')
