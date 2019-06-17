@@ -9,7 +9,7 @@ The This repo consist of a demo file and related coduments to explain protein se
 - [Python script for Needleman-Wunsch Algorithm](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/alignment_simple.py)
 - [BLOSUM substitution Matrix for protein residues](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/blosum62.bla)
 
-[Binder](https://mybinder.org/v2/gh/malvikasharan/Alignment-Algorithms/master?filepath=https%3A%2F%2Fgithub.com%2Fmalvikasharan%2FAlignment-Algorithms%2Fblob%2Fmaster%2Fhomage_to_alignment%2520algorithms.ipynb)
+Access the demo file on [Binder](https://mybinder.org/v2/gh/malvikasharan/Alignment-Algorithms/master?filepath=https%3A%2F%2Fgithub.com%2Fmalvikasharan%2FAlignment-Algorithms%2Fblob%2Fmaster%2Fhomage_to_alignment%2520algorithms.ipynb)
 
 **License**
 
