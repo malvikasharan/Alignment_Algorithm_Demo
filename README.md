@@ -1,6 +1,8 @@
 # Sequence Alignment Algorithms
 
-- Short link to access this repository: **[https://tinyurl.com/malvika-algorithm](https://tinyurl.com/malvika-algorithm)**
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/malvikasharan/Alignment_Algorithm_Demo/master)
+
+- Short link to access this repository: **[https://tinyurl.com/malvika-seq-demo](https://tinyurl.com/malvika-seq-demo)**
 
 **Introduction & Background**
 
