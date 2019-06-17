@@ -2,6 +2,8 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/malvikasharan/Alignment-Algorithms/master)
 
+- Short link to access this repository: [https://tinyurl.com/malvika-algorithm](https://tinyurl.com/malvika-algorithm)
+
 - Sequence alignment algorithms are ways to **arrange two or many biological sequences** 
 - They **identify regions of similarity** that may indicate to functional, structural, or evolutionary relationships between the sequences.
 
