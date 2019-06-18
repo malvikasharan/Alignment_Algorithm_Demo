@@ -22,7 +22,7 @@ The This repo consist of a demo file and related documents to explain protein se
 **Demo file**
 
 - [Jupyter Notebook](https://github.com/malvikasharan/Alignment-Algorithms/blob/master/homage_to_alignment%20algorithms.ipynb)
-  - Access them on [NBviewer](https://nbviewer.jupyter.org/github/malvikasharan/Alignment_Algorithm_Demo/blob/master/homage_to_alignment%20algorithms.ipynb) and Binder: [https://gke.mybinder.org/v2/gh/malvikasharan/Alignment_Algorithm_Demo/master](https://gke.mybinder.org/v2/gh/malvikasharan/Alignment-Algorithms/master).
+  - You can access them online by using [NBviewer](https://nbviewer.jupyter.org/github/malvikasharan/Alignment_Algorithm_Demo/blob/master/homage_to_alignment%20algorithms.ipynb) for a non-interactive version of the notebook, and [Binder](https://gke.mybinder.org/v2/gh/malvikasharan/Alignment-Algorithms/master) for an interactive version of the notebook in your browser.
   
 **Related files**
 
